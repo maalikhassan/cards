@@ -1,0 +1,565 @@
+<!--
+    LUCK & LOGIC - Printable Card Deck
+    ===================================
+    
+    Description: Complete printable card deck for the LUCK & LOGIC board game
+    Cards: 20 Action Cards + 10 Challenge Cards = 30 Total
+    
+    Usage: 
+    1. Open this file in any web browser
+    2. Press Ctrl+P (Windows) or Cmd+P (Mac) to print
+    3. Cut along the dotted lines to separate cards
+    
+    Print Settings:
+    - Margins: Minimal (0.5 inch)
+    - Paper: Cardstock recommended
+    - Colors: Print in color for neon effect, or B&W for cost-effective option
+    - Size: A4 or Letter
+    
+    Customization:
+    - Edit card titles and descriptions directly in the HTML
+    - Modify colors in the :root CSS variables
+    - Add new cards by copying the card structure
+    
+    For full documentation, see:
+    - README.md - Complete guide and card list
+    - RULES.md - Game rules and instructions
+    - CONTRIBUTING.md - How to customize or contribute
+    
+    Version: 1.0
+    Last Updated: November 2025
+    License: MIT
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCK & LOGIC - Printable Cards</title>
+    <style>
+        /* --- Font Import --- */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        /* --- Theme --- */
+        :root {
+            --color-black: #0d0d0d;
+            --color-blue: #00ffff;
+            --color-gold: #ffd700;
+            --color-red: #ff1155;
+            --color-purple: #9a00ff;
+            --color-text: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--color-black);
+            color: var(--color-text);
+            font-family: 'Orbitron', sans-serif;
+            padding: 20px;
+        }
+
+        .info-header {
+            text-align: center;
+            color: var(--color-text);
+            border-bottom: 1px solid var(--color-blue);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* --- Card Grid Layout --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            padding-bottom: 20px;
+        }
+
+        /* --- Base Card Design --- */
+        .card {
+            width: 220px;
+            height: 330px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 0.9em;
+            line-height: 1.5;
+            
+            /* --- Neon Border --- */
+            border: 2px solid;
+            box-shadow: 0 0 10px, 0 0 5px inset;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1.1em;
+            border-bottom: 1px dashed;
+            padding-bottom: 8px;
+        }
+
+        .card-icon {
+            font-size: 1.5em;
+        }
+
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .card-description {
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .card-footer {
+            font-size: 0.7em;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* --- Action Cards (Gold) --- */
+        .action-card {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+            box-shadow: 0 0 10px var(--color-gold), 0 0 5px var(--color-gold) inset;
+        }
+        .action-card .card-header {
+            border-color: var(--color-gold);
+        }
+
+        /* --- Challenge Cards (Purple) --- */
+        .challenge-card {
+            border-color: var(--color-purple);
+            color: var(--color-purple);
+            box-shadow: 0 0 10px var(--color-purple), 0 0 5px var(--color-purple) inset;
+        }
+        .challenge-card .card-header {
+            border-color: var(--color-purple);
+        }
+
+        /* --- Print Styles --- */
+        @media print {
+            body {
+                background: #ffffff;
+                color: #000000;
+                font-family: sans-serif;
+            }
+
+            .info-header {
+                display: none; /* Hide header when printing */
+            }
+
+            .card-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 3 cards per row on paper */
+                gap: 15px;
+            }
+
+            .card {
+                width: 100%;
+                height: 300px; /* Adjust height for print */
+                border: 2px dashed #333; /* Simple border for cutting */
+                box-shadow: none; /* Remove glow to save ink */
+                color: #000000;
+                background: #ffffff;
+                page-break-inside: avoid; /* Try to keep card on one page */
+            }
+            
+            .card-header {
+                border-color: #333;
+                color: #000000;
+            }
+            
+            /* Make all card types look the same for B&W printing */
+            .action-card, .challenge-card {
+                border-color: #333;
+                color: #000000;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-header">
+        <h1>LUCK & LOGIC: Printable Cards</h1>
+        <p>Open your browser's Print dialog (Ctrl/Cmd + P) to print this sheet. Dotted lines will appear for cutting.</p>
+    </div>
+
+    <div class="card-grid">
+        <!-- ========================================
+             ACTION CARDS (20 Total)
+             ======================================== -->
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">STEAL</p>
+                <p class="card-description">Steal 3 points from any player of your choice.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+        
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">SCORE SWAP</p>
+                <p class="card-description">Trade your total score with the player to your right.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">DOUBLE THROW</p>
+                <p class="card-description">Your next throw's points (positive or negative) are doubled.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">IMMUNITY</p>
+                <p class="card-description">Keep this card. Discard it to skip the next penalty or negative tile you land on.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+        
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">ROLL AGAIN</p>
+                <p class="card-description">Your turn isn't over. Roll again immediately!</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+        
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">GIFT</p>
+                <p class="card-description">A generous spirit! Give another player 2 of your points.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">FORCE REROLL</p>
+                <p class="card-description">Force another player to re-roll their last throw. They must accept the new result.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">POWER UP</p>
+                <p class="card-description">Gain +1 bonus point on your next 3 turns.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">BLOCK</p>
+                <p class="card-description">The next player must skip their next turn. Keep and discard when used.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">LUCKY DRAW</p>
+                <p class="card-description">Draw another card from the deck. You must use it immediately!</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">REVERSE</p>
+                <p class="card-description">Reverse the game direction. All turns now go counter-clockwise.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">MIRROR</p>
+                <p class="card-description">Copy the last action card played by another player.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">SHUFFLE</p>
+                <p class="card-description">All players shuffle their points. Redistribute equally if possible.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">LUCKY BREAK</p>
+                <p class="card-description">Gain 5 bonus points immediately!</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">SWAP LEFT</p>
+                <p class="card-description">Swap your score with the player to your left.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">STEAL HALF</p>
+                <p class="card-description">Steal half (rounded up) of one player's points. You choose the target.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">RESURRECTION</p>
+                <p class="card-description">If you have negative points, reset to 0 points instead.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card action-card">
+            <div class="card-header">
+                <span>ACTION CARD</span>
+                <span class="card-icon">⚡</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">ALLIANCE</p>
+                <p class="card-description">Team up with another player for the next round. You share points gained.</p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <!-- ========================================
+             CHALLENGE CARDS (10 Total)
+             ======================================== -->
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">RIDDLE</p>
+                <p class="card-description">"I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?"
+                    <br/><br/>(Answer: A Map)
+                    <br/><b>Reward: +5 / Penalty: -3</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+        
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">QUICK MATH</p>
+                <p class="card-description">Solve: (7 x 3) - (4 x 2) = ?
+                    <br/><br/>(Answer: 13)
+                    <br/><b>Reward: +4 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+        
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">MEMORY</p>
+                <p class="card-description">Spell "CHALLENGE" backward in 10 seconds.
+                    <br/><br/>(E-G-N-E-L-L-A-H-C)
+                    <br/><b>Reward: +3 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+        
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">PHYSICAL</p>
+                <p class="card-description">Do 5 jumping jacks in 10 seconds.
+                    <br/><br/><b>Reward: +3 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">TONGUE TWISTER</p>
+                <p class="card-description">Say "Sally sells seashells by the sea shore" three times fast without mistakes.
+                    <br/><br/><b>Reward: +4 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">LOGIC PUZZLE</p>
+                <p class="card-description">If all roses are flowers and some flowers are red, can all roses be red?
+                    <br/><br/>(Answer: No, not necessarily)
+                    <br/><b>Reward: +5 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">SEQUENCE</p>
+                <p class="card-description">What comes next? 2, 4, 8, 16, ?
+                    <br/><br/>(Answer: 32)
+                    <br/><b>Reward: +4 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">ANAGRAM</p>
+                <p class="card-description">Unscramble: TROSBCUK
+                    <br/><br/>(Answer: BUSTROCK or similar valid word)
+                    <br/><b>Reward: +3 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        <div class="card challenge-card">
+            <div class="card-header">
+                <span>CHALLENGE</span>
+                <span class="card-icon">❓</span>
+            </div>
+            <div class="card-body">
+                <p class="card-title">TRIVIA</p>
+                <p class="card-description">What is the capital of France?
+                    <br/><br/>(Answer: Paris)
+                    <br/><b>Reward: +2 points</b>
+                </p>
+            </div>
+            <div class="card-footer">LUCK & LOGIC</div>
+        </div>
+
+        </div>
+
+</body>
+</html>
