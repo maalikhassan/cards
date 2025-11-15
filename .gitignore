@@ -1,0 +1,33 @@
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-workspace
+.sublime-project
+*.code-workspace
+
+# Project specific
+*.pdf
+*.zip
+*.rar
+print-output/
+
+# Node (if added in future)
+node_modules/
+npm-debug.log
+
+# Python (if added in future)
+__pycache__/
+*.py[cod]
+*$py.class
